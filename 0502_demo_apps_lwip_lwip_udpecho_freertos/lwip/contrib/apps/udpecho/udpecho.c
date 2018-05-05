@@ -34,7 +34,7 @@ server_thread(void *arg)
 	LWIP_UNUSED_ARG(arg);
 	conn = netconn_new(NETCONN_UDP);
 	netconn_bind(conn, IP_ADDR_ANY, 54321);
-	//LWIP_ERROR("udpecho: invalid conn", (conn != NULL), return;);
+
 	uint8_t dacBuffer[60];
 
 
@@ -50,12 +50,10 @@ server_thread(void *arg)
 // 			msg++;
 // 		}
 
+		netbuf_copy(buf, buffer, sizeof(buffer));
+		PRINTF("%i_", buffer[0]);
 
 
-	if (netbuf_copy(buf, buffer, sizeof(buffer)) != buf->p->tot_len) {
-			LWIP_DEBUGF(LWIP_DBG_ON, ("netbuf_copy failed\n"));
-	} else {
-			PRINTF("%i_", buffer[0]);
 			if (EVENT_BIT & xEventGroupGetBits(event)) {
 				netbuf_copy(buf, ping, N);
 				xEventGroupClearBits(event, EVENT_BIT);
@@ -63,7 +61,7 @@ server_thread(void *arg)
 				netbuf_copy(buf, pong, N);
 				xEventGroupSetBits(event, EVENT_BIT);
 			}
-		}
+
 
 	netbuf_delete(buf);
 

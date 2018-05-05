@@ -131,23 +131,25 @@ static void PIT_config(void){
 
 static void DAC_config(void){
 
-    //    adc16_config_t adc16ConfigStruct;
-    //    dac_config_t dacConfigStruct;
-    //
-    //    /* Configure the DAC. */
-    //    /*
-    //     * dacConfigStruct.referenceVoltageSource = kDAC_ReferenceVoltageSourceVref2;
-    //     * dacConfigStruct.enableLowPowerMode = false;
-    //     */
-    //    DAC_GetDefaultConfig(&dacConfigStruct);
-    //    DAC_Init(DEMO_DAC_BASEADDR, &dacConfigStruct);
-    //    DAC_Enable(DEMO_DAC_BASEADDR, true); /* Enable output. */
+        adc16_config_t adc16ConfigStruct;
+        dac_config_t dacConfigStruct;
+
+        /* Configure the DAC. */
+        /*
+         * dacConfigStruct.referenceVoltageSource = kDAC_ReferenceVoltageSourceVref2;
+         * dacConfigStruct.enableLowPowerMode = false;
+         */
+        DAC_GetDefaultConfig(&dacConfigStruct);
+        DAC_Init(DEMO_DAC_BASEADDR, &dacConfigStruct);
+        DAC_Enable(DEMO_DAC_BASEADDR, true); /* Enable output. */
 }
 
 
 static void audio_player(void *arg)
 {
-	 vTaskDelete(NULL);
+	PIT_config();
+	DAC_config();
+	vTaskDelete(NULL);
 }
 
 
@@ -194,7 +196,7 @@ void PIT0_IRQHandler()
 {
 PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
 counter ++;
-//PRINTF("\r\n%d\r\n", counter);
+PRINTF("\r\n%d\r\n", counter);
 //ya no poner logica del DAC aqui
 }
 
