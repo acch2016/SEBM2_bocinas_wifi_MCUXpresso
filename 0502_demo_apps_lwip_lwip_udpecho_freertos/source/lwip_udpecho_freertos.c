@@ -99,10 +99,8 @@
 /*******************************************************************************
 * Prototypes
 ******************************************************************************/
-
-/* Initialize ADC16 & DAC */
-//static void DAC_Init(void);
-static void PIT_init(void);
+static void PIT_config(void);
+static void DAC_config(void);
 /*******************************************************************************
 * Variables
 ******************************************************************************/
@@ -115,35 +113,41 @@ static void PIT_init(void);
  * @brief Initializes lwIP stack.
  */
 
-//static void DAC_Init(void)
-//{
-//    adc16_config_t adc16ConfigStruct;
-//    dac_config_t dacConfigStruct;
-//
-//    /* Configure the DAC. */
-//    /*
-//     * dacConfigStruct.referenceVoltageSource = kDAC_ReferenceVoltageSourceVref2;
-//     * dacConfigStruct.enableLowPowerMode = false;
-//     */
-//    DAC_GetDefaultConfig(&dacConfigStruct);
-//    DAC_Init(DEMO_DAC_BASEADDR, &dacConfigStruct);
-//    DAC_Enable(DEMO_DAC_BASEADDR, true); /* Enable output. */
-//}
-
-
-static void PIT_init(void)
-{
+static void PIT_config(void){
     pit_config_t pit_config;
     PIT_GetDefaultConfig(&pit_config);
     //CLOCK_EnableClock(kCLOCK_Pit0);
     //MCR
     PIT_Init(PIT, &pit_config);
 //    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq()*(1.5));
-    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, 1/SAMPLE_RATE);
+    /* Set timer period for channel 0 */
+    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(1000000U, CLOCK_GetFreq(kCLOCK_BusClk)));
+//    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq());
     PIT_GetStatusFlags(PIT, kPIT_Chnl_0);
     PIT_StartTimer(PIT, kPIT_Chnl_0);
     PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
     NVIC_EnableIRQ(PIT0_IRQn);
+}
+
+static void DAC_config(void){
+
+    //    adc16_config_t adc16ConfigStruct;
+    //    dac_config_t dacConfigStruct;
+    //
+    //    /* Configure the DAC. */
+    //    /*
+    //     * dacConfigStruct.referenceVoltageSource = kDAC_ReferenceVoltageSourceVref2;
+    //     * dacConfigStruct.enableLowPowerMode = false;
+    //     */
+    //    DAC_GetDefaultConfig(&dacConfigStruct);
+    //    DAC_Init(DEMO_DAC_BASEADDR, &dacConfigStruct);
+    //    DAC_Enable(DEMO_DAC_BASEADDR, true); /* Enable output. */
+}
+
+
+static void audio_player(void *arg)
+{
+	 vTaskDelete(NULL);
 }
 
 
@@ -185,12 +189,13 @@ static void stack_init(void *arg)
     vTaskDelete(NULL);
 }
 
-
+uint8_t counter = 0;
 void PIT0_IRQHandler()
 {
 PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
-PRINTF("\r\n************************************************\r\n");
-//poner logica del DAC aqui
+counter ++;
+//PRINTF("\r\n%d\r\n", counter);
+//ya no poner logica del DAC aqui
 }
 
 /*!
@@ -205,10 +210,7 @@ int main(void)
     /* Disable SYSMPU. */
     base->CESR &= ~SYSMPU_CESR_VLD_MASK;
 
-    PIT_init();
-//    DAC_Init();
-
-//    xTaskCreate(init_pit, "init_pit", configMINIMAL_STACK_SIZE+100, NULL, configMAX_PRIORITIES, NULL);
+    xTaskCreate(audio_player, "audio_player", configMINIMAL_STACK_SIZE, NULL, configMAX_PRIORITIES-1, NULL);
 
     /* Initialize lwIP from thread */
     if(sys_thread_new("main", stack_init, NULL, INIT_THREAD_STACKSIZE, INIT_THREAD_PRIO) == NULL)

@@ -13,12 +13,12 @@
 
 #define N 100
 #define EVENT_BIT (1<<0)
+//#define EVENT_BIT_ (1<<0)
 uint16_t ping[N];
 uint16_t pong[N];
 
 EventGroupHandle_t event;
 
-//counter
 static void
 server_thread(void *arg)
 {
@@ -29,12 +29,14 @@ server_thread(void *arg)
 
 	uint16_t len;
 	uint16_t buffer[4096];
+//	memset(buffer[0], 0, sizeof(buffer[0]));
 
 	LWIP_UNUSED_ARG(arg);
 	conn = netconn_new(NETCONN_UDP);
 	netconn_bind(conn, IP_ADDR_ANY, 54321);
 	//LWIP_ERROR("udpecho: invalid conn", (conn != NULL), return;);
 	uint8_t dacBuffer[60];
+
 
 	while (1)
 	{
@@ -43,18 +45,17 @@ server_thread(void *arg)
 
 		//PRINTF("%i" ,msg[0]);
 
-
-
-
 // 		for(uint8_t indice = 0;indice < len; indice++ ){
 // 			dacBuffer[indice]= *msg;
 // 			msg++;
 // 		}
 
+
+
 	if (netbuf_copy(buf, buffer, sizeof(buffer)) != buf->p->tot_len) {
 			LWIP_DEBUGF(LWIP_DBG_ON, ("netbuf_copy failed\n"));
 	} else {
-			PRINTF("%i", buffer[0]);
+			PRINTF("%i_", buffer[0]);
 			if (EVENT_BIT & xEventGroupGetBits(event)) {
 				netbuf_copy(buf, ping, N);
 				xEventGroupClearBits(event, EVENT_BIT);
