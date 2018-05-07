@@ -2326,6 +2326,92 @@
 						<entry kind="macro" name="__REDLIB__" value=""/>
 						<entry kind="macro" name="__USE_CMSIS" value=""/>
 					</resource>
+					<resource project-relative-path="source/AUDIO_PLAYER_.c">
+						<entry kind="includePath" name="/${ProjName}/board">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/source">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/drivers">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/CMSIS">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/utilities">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/startup">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/contrib/apps/udpecho">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/port/arch">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/port">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip/priv">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip/prot">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif/ppp/polarssl">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif/ppp">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/posix/sys">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/posix">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/freertos/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/freertos/portable">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/contrib/apps">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="macro" name="CPU_MK64FN1M0VLL12" value=""/>
+						<entry kind="macro" name="CPU_MK64FN1M0VLL12_cm4" value=""/>
+						<entry kind="macro" name="CR_INTEGER_PRINTF" value=""/>
+						<entry kind="macro" name="DEBUG" value=""/>
+						<entry kind="macro" name="FRDM_K64F" value=""/>
+						<entry kind="macro" name="FREEDOM" value=""/>
+						<entry kind="macro" name="FSL_RTOS_FREE_RTOS" value=""/>
+						<entry kind="macro" name="PRINTF_ADVANCED_ENABLE" value="1"/>
+						<entry kind="macro" name="PRINTF_FLOAT_ENABLE" value="0"/>
+						<entry kind="macro" name="SDK_DEBUGCONSOLE" value="0"/>
+						<entry kind="macro" name="SDK_OS_FREE_RTOS" value=""/>
+						<entry kind="macro" name="USE_RTOS" value="1"/>
+						<entry kind="macro" name="__MCUXPRESSO" value=""/>
+						<entry kind="macro" name="__REDLIB__" value=""/>
+						<entry kind="macro" name="__USE_CMSIS" value=""/>
+					</resource>
 					<resource project-relative-path="lwip/src/core/mem.c">
 						<entry kind="includePath" name="/${ProjName}/board">
 							<flag value="VALUE_WORKSPACE_PATH"/>
@@ -2757,6 +2843,92 @@
 						<entry kind="macro" name="__USE_CMSIS" value=""/>
 					</resource>
 					<resource project-relative-path="freertos/source/event_groups.c">
+						<entry kind="includePath" name="/${ProjName}/board">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/source">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/drivers">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/CMSIS">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/utilities">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/startup">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/contrib/apps/udpecho">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/port/arch">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/port">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip/priv">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip/prot">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif/ppp/polarssl">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif/ppp">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/posix/sys">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/posix">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/freertos/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/freertos/portable">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/contrib/apps">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="macro" name="CPU_MK64FN1M0VLL12" value=""/>
+						<entry kind="macro" name="CPU_MK64FN1M0VLL12_cm4" value=""/>
+						<entry kind="macro" name="CR_INTEGER_PRINTF" value=""/>
+						<entry kind="macro" name="DEBUG" value=""/>
+						<entry kind="macro" name="FRDM_K64F" value=""/>
+						<entry kind="macro" name="FREEDOM" value=""/>
+						<entry kind="macro" name="FSL_RTOS_FREE_RTOS" value=""/>
+						<entry kind="macro" name="PRINTF_ADVANCED_ENABLE" value="1"/>
+						<entry kind="macro" name="PRINTF_FLOAT_ENABLE" value="0"/>
+						<entry kind="macro" name="SDK_DEBUGCONSOLE" value="0"/>
+						<entry kind="macro" name="SDK_OS_FREE_RTOS" value=""/>
+						<entry kind="macro" name="USE_RTOS" value="1"/>
+						<entry kind="macro" name="__MCUXPRESSO" value=""/>
+						<entry kind="macro" name="__REDLIB__" value=""/>
+						<entry kind="macro" name="__USE_CMSIS" value=""/>
+					</resource>
+					<resource project-relative-path="source/AUDIO_PLAYER.c">
 						<entry kind="includePath" name="/${ProjName}/board">
 							<flag value="VALUE_WORKSPACE_PATH"/>
 						</entry>
@@ -4219,6 +4391,92 @@
 						<entry kind="macro" name="__USE_CMSIS" value=""/>
 					</resource>
 					<resource project-relative-path="lwip/src/api/api_lib.c">
+						<entry kind="includePath" name="/${ProjName}/board">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/source">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/drivers">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/CMSIS">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/utilities">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/startup">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/contrib/apps/udpecho">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/port/arch">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/port">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip/priv">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip/prot">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif/ppp/polarssl">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif/ppp">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/posix/sys">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/posix">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/freertos/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/freertos/portable">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/contrib/apps">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="macro" name="CPU_MK64FN1M0VLL12" value=""/>
+						<entry kind="macro" name="CPU_MK64FN1M0VLL12_cm4" value=""/>
+						<entry kind="macro" name="CR_INTEGER_PRINTF" value=""/>
+						<entry kind="macro" name="DEBUG" value=""/>
+						<entry kind="macro" name="FRDM_K64F" value=""/>
+						<entry kind="macro" name="FREEDOM" value=""/>
+						<entry kind="macro" name="FSL_RTOS_FREE_RTOS" value=""/>
+						<entry kind="macro" name="PRINTF_ADVANCED_ENABLE" value="1"/>
+						<entry kind="macro" name="PRINTF_FLOAT_ENABLE" value="0"/>
+						<entry kind="macro" name="SDK_DEBUGCONSOLE" value="0"/>
+						<entry kind="macro" name="SDK_OS_FREE_RTOS" value=""/>
+						<entry kind="macro" name="USE_RTOS" value="1"/>
+						<entry kind="macro" name="__MCUXPRESSO" value=""/>
+						<entry kind="macro" name="__REDLIB__" value=""/>
+						<entry kind="macro" name="__USE_CMSIS" value=""/>
+					</resource>
+					<resource project-relative-path="source/AUDIO_PLAYERR.c">
 						<entry kind="includePath" name="/${ProjName}/board">
 							<flag value="VALUE_WORKSPACE_PATH"/>
 						</entry>
@@ -7487,6 +7745,92 @@
 						<entry kind="macro" name="__USE_CMSIS" value=""/>
 					</resource>
 					<resource project-relative-path="lwip/src/netif/lowpan6.c">
+						<entry kind="includePath" name="/${ProjName}/board">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/source">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/drivers">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/CMSIS">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/utilities">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/startup">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/contrib/apps/udpecho">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/port/arch">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/port">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip/priv">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip/prot">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/lwip">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif/ppp/polarssl">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif/ppp">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/netif">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/posix/sys">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include/posix">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/freertos/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/freertos/portable">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/src/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/lwip/contrib/apps">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="macro" name="CPU_MK64FN1M0VLL12" value=""/>
+						<entry kind="macro" name="CPU_MK64FN1M0VLL12_cm4" value=""/>
+						<entry kind="macro" name="CR_INTEGER_PRINTF" value=""/>
+						<entry kind="macro" name="DEBUG" value=""/>
+						<entry kind="macro" name="FRDM_K64F" value=""/>
+						<entry kind="macro" name="FREEDOM" value=""/>
+						<entry kind="macro" name="FSL_RTOS_FREE_RTOS" value=""/>
+						<entry kind="macro" name="PRINTF_ADVANCED_ENABLE" value="1"/>
+						<entry kind="macro" name="PRINTF_FLOAT_ENABLE" value="0"/>
+						<entry kind="macro" name="SDK_DEBUGCONSOLE" value="0"/>
+						<entry kind="macro" name="SDK_OS_FREE_RTOS" value=""/>
+						<entry kind="macro" name="USE_RTOS" value="1"/>
+						<entry kind="macro" name="__MCUXPRESSO" value=""/>
+						<entry kind="macro" name="__REDLIB__" value=""/>
+						<entry kind="macro" name="__USE_CMSIS" value=""/>
+					</resource>
+					<resource project-relative-path="source/AUDIO_PLAY.c">
 						<entry kind="includePath" name="/${ProjName}/board">
 							<flag value="VALUE_WORKSPACE_PATH"/>
 						</entry>
