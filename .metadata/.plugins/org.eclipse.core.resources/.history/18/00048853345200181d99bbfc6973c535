@@ -74,8 +74,6 @@ void LED_config(void)
 		xSemaphoreTake(pitToogleSemaphore,portMAX_DELAY);
 		GPIO_TogglePinsOutput(GPIOB, 1 << 21);
 
-//		buf = GlobalBuffer[0];
-
 		//	if (EVENT_BIT & xEventGroupGetBits(event)) {
 		//		netbuf_copy(buf, pingBuffer, N_SIZE);
 		//		xEventGroupClearBits(event, EVENT_BIT);

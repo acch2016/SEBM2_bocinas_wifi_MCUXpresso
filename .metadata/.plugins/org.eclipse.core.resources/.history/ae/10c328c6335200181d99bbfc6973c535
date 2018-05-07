@@ -32,12 +32,6 @@
 #ifndef LWIP_UDPECHO_H
 #define LWIP_UDPECHO_H
 
-//#include "MK64F12.h"
 void udpecho_init(void);
-
-/*******************************************************************************
-* Variables
-******************************************************************************/
-
 
 #endif /* LWIP_UDPECHO_H */

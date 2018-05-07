@@ -7,7 +7,7 @@
 #include "lwip/api.h"
 #include "lwip/sys.h"
 
-uint16_t GlobalBuffer[4096];
+
 
 static void
 server_thread(void *arg)

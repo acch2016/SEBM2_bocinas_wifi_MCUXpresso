@@ -74,8 +74,6 @@ void LED_config(void)
 		xSemaphoreTake(pitToogleSemaphore,portMAX_DELAY);
 		GPIO_TogglePinsOutput(GPIOB, 1 << 21);
 
-//		buf = GlobalBuffer[0];
-
 		//	if (EVENT_BIT & xEventGroupGetBits(event)) {
 		//		netbuf_copy(buf, pingBuffer, N_SIZE);
 		//		xEventGroupClearBits(event, EVENT_BIT);
@@ -103,7 +101,7 @@ void LED_config(void)
  void audio_player_init(void)
 {
 	pitToogleSemaphore = xSemaphoreCreateBinary();
-	xTaskCreate(audio_player, "audio_player", configMINIMAL_STACK_SIZE, NULL, configMAX_PRIORITIES-1, NULL);
+	xTaskCreate(audio_player, "audio_player", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
 }
 
 

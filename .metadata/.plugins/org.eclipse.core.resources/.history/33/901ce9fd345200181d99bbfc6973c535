@@ -9,7 +9,7 @@
 
 
 
-void PITconfig()
+static void PITconfig()
 {
     pit_config_t pit_config;
     PIT_GetDefaultConfig(&pit_config);
@@ -28,7 +28,7 @@ void PITconfig()
 
 }
 
-void DAC_config(void)
+static void DAC_config(void)
 {
         dac_config_t dacConfigStruct;
 
@@ -43,7 +43,7 @@ void DAC_config(void)
         DAC_Enable(DEMO_DAC_BASEADDR, true); /* Enable output. */
 
 }
-void LED_config(void)
+static void LED_config(void)
 {
 	CLOCK_EnableClock(kCLOCK_PortB);//B
 	port_pin_config_t config_led =
