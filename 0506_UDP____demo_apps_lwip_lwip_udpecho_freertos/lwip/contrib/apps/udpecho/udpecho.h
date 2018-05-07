@@ -32,6 +32,7 @@
 #ifndef LWIP_UDPECHO_H
 #define LWIP_UDPECHO_H
 
+#include "stdint.h"
 //#include "MK64F12.h"
 void udpecho_init(void);
 
