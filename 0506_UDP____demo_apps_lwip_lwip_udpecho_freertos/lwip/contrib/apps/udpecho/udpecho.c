@@ -28,10 +28,12 @@ server_thread(void *arg)
 	uint8_t dacBuffer[60];
 
 	TickType_t xLastWakeTime;
-	const TickType_t xPeriod = pdMS_TO_TICKS(4000);
+	const TickType_t xPeriod = pdMS_TO_TICKS(4);
 	// Initialize the xLastWakeTime variable with the current time.
 	xLastWakeTime = xTaskGetTickCount();
 
+//	xQueue1 = xQueueCreate( 10, sizeof( unsigned long ) );
+//	xQueue = xQueueCreate(3,sizeof( time_msg_t));
 
 	while (1)
 	{
