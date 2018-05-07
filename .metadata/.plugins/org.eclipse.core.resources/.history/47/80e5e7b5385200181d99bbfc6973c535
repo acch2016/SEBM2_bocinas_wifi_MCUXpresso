@@ -68,7 +68,6 @@ void LED_config(void)
 	LED_config();
 
 //	vTaskDelete(NULL);
-	uint16_t buf[4096];
 
 	while (1)
 	{
