@@ -59,7 +59,7 @@ void PIT_config(void);
 void DAC_config(void);
 void LED_config(void);
 static void audio_player(void *arg);
-uint16_t * AudioPlayer_getBuffer(void);
+
 
 
 
