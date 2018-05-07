@@ -18,7 +18,7 @@ void PITconfig()
     PIT_Init(PIT, &pit_config);
 //    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq()*(1.5));
     /* Set timer period for channel 0 */
-    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(10U, CLOCK_GetFreq(kCLOCK_BusClk)));//como son 100 valores, le toma mas tiempo y por lo tanto la frecuencia es dos ceros mas abajo
+    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(1000000U, CLOCK_GetFreq(kCLOCK_BusClk)));
 //    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq());
     PIT_GetStatusFlags(PIT, kPIT_Chnl_0);
     PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
@@ -66,17 +66,13 @@ void LED_config(void)
 	PITconfig();
 	DAC_config();
 	LED_config();
-	TickType_t xLastWakeTime;
-	const TickType_t xPeriod = pdMS_TO_TICKS(2000);
-	// Initialize the xLastWakeTime variable with the current time.
-	xLastWakeTime = xTaskGetTickCount();
 
 //	vTaskDelete(NULL);
 
 	while (1)
 	{
 		xSemaphoreTake(pitToogleSemaphore,portMAX_DELAY);
-//		GPIO_TogglePinsOutput(GPIOB, 1 << 21);
+		GPIO_TogglePinsOutput(GPIOB, 1 << 21);
 
 		//	if (EVENT_BIT & xEventGroupGetBits(event)) {
 		//		netbuf_copy(buf, pingBuffer, N_SIZE);
@@ -85,17 +81,7 @@ void LED_config(void)
 		//		netbuf_copy(buf, pongBuffer, N_SIZE);
 		//		xEventGroupSetBits(event, EVENT_BIT);
 		//	}
-
-
-		static uint8_t i_SinValue = 0;
-		if (i_SinValue == 100)
-		{
-			i_SinValue = 0;
-		}
-		DAC_SetBufferValue(DAC0, 0U, valores[i_SinValue]);
-		i_SinValue ++;
-
-		vTaskDelayUntil( &xLastWakeTime, xPeriod );
+//		DAC_SetBufferValue(DEMO_DAC_BASEADDR, 0U, DAC_1_0_VOLTS);
 	}
 
 
@@ -116,8 +102,8 @@ void PIT0_IRQHandler()
 {
 	BaseType_t xHigherPriorityTaskWoken;
 	PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
-//	PIT_StopTimer(PIT, kPIT_Chnl_0);
-//	PIT_StartTimer(PIT, kPIT_Chnl_0);
+	PIT_StopTimer(PIT, kPIT_Chnl_0);
+	PIT_StartTimer(PIT, kPIT_Chnl_0);
 //	GPIO_TogglePinsOutput(GPIOB, 1 << 21);
 //	counter++;
 //	PRINTF("\r\n%d\r\n", counter);

@@ -1,6 +1,6 @@
-02:23:50 **** Incremental Build of configuration Debug for project 0506_UDP____demo_apps_lwip_lwip_udpecho_freertos ****
+05:04:44 **** Incremental Build of configuration Debug for project 0506_UDP____demo_apps_lwip_lwip_udpecho_freertos ****
 make -r -j8 all 
 make: Nothing to be done for `all'.
 
-02:23:51 Build Finished (took 374ms)
+05:04:45 Build Finished (took 343ms)
 
