@@ -44,6 +44,7 @@
 #include "lwip/tcpip.h"
 #include "netif/ethernet.h"
 #include "ethernetif.h"
+//#include "SOUND_PLAYER.h"
 
 #include "board.h"
 
@@ -71,8 +72,8 @@
 /* Gateway address configuration. */
 #define configGW_ADDR0 192
 #define configGW_ADDR1 168
-#define configGW_ADDR2 0
-#define configGW_ADDR3 100
+#define configGW_ADDR2 1
+#define configGW_ADDR3 254
 
 /* MAC address configuration. */
 #define configMAC_ADDR {0x02, 0x12, 0x13, 0x10, 0x15, 0x11}
@@ -93,7 +94,7 @@
 /*******************************************************************************
 * Prototypes
 ******************************************************************************/
-
+void audio_player_init(void);
 /*******************************************************************************
 * Variables
 ******************************************************************************/

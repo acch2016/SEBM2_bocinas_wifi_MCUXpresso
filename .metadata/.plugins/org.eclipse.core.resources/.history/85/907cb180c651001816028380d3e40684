@@ -1,0 +1,57 @@
+/*
+ * SOUND_PLAYER.h
+ *
+ *  Created on: May 6, 2018
+ *      Author: edson
+ */
+
+#ifndef SOUND_PLAYER_H_
+#define SOUND_PLAYER_H_
+
+
+#include "MK64F12.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "semphr.h"
+#include "event_groups.h"
+#include "udpecho.h"
+
+#include "board.h"
+//#include "peripherals.h"
+#include "clock_config.h"
+#include "pin_mux.h"
+#include "fsl_debug_console.h"
+#include "fsl_dac.h"
+#include "fsl_pit.h"
+#include "fsl_port.h"
+#include "fsl_gpio.h"
+
+/*******************************************************************************
+ * Definitions
+ ******************************************************************************/
+#define DEMO_DAC_BASEADDR DAC0
+
+#define N_SIZE 100
+#define EVENT_BIT (1<<0)
+//#define EVENT_BIT_ (1<<0)
+
+/*******************************************************************************
+* Variables
+******************************************************************************/
+uint16_t pingBuffer[N_SIZE];
+uint16_t pongBuffer[N_SIZE];
+//EventGroupHandle_t event;
+SemaphoreHandle_t pitToogleSemaphore;
+
+
+/*******************************************************************************
+* Prototypes
+******************************************************************************/
+void PIT_config(void);
+void DAC_config(void);
+void LED_config(void);
+// void audio_player(void*arg);
+void audio_player_init(void);
+
+
+#endif /* SOUND_PLAYER_H_ */
