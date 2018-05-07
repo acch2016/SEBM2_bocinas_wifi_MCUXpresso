@@ -33,5 +33,6 @@
 #define LWIP_UDPECHO_H
 
 void udpecho_init(void);
+QueueHandle_t xQueue;
 
 #endif /* LWIP_UDPECHO_H */
