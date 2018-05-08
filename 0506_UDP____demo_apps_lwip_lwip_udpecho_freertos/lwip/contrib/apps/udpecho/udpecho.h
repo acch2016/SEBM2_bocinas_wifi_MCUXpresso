@@ -43,6 +43,6 @@ void udpecho_init(void);
 /*******************************************************************************
 * Prototypes
 ******************************************************************************/
-uint16_t * AudioPlayer_getBuffer(void);
+uint16_t* AudioPlayer_getBuffer(void);
 
 #endif /* LWIP_UDPECHO_H */
