@@ -34,15 +34,15 @@
  ******************************************************************************/
 #define DEMO_DAC_BASEADDR DAC0
 
-#define N_SIZE 200
+#define PINGPONGSIZE 100
 #define EVENT_BIT (1<<0)
 //#define EVENT_BIT_ (1<<0)
 
 /*******************************************************************************
 * Variables
 ******************************************************************************/
-uint16_t pingBuffer[N_SIZE];
-uint16_t pongBuffer[N_SIZE];
+uint16_t pingBuffer[PINGPONGSIZE];
+uint16_t pongBuffer[PINGPONGSIZE];
 EventGroupHandle_t event;
 SemaphoreHandle_t pitToogleSemaphore;
 uint8_t valores[] = { 127, 135, 143, 151, 159, 167, 174, 182, 189, 196, 202,

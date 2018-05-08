@@ -1,6 +1,20 @@
-21:45:32 **** Incremental Build of configuration Debug for project 0506_UDP____demo_apps_lwip_lwip_udpecho_freertos ****
+17:19:15 **** Incremental Build of configuration Debug for project 0506_UDP____demo_apps_lwip_lwip_udpecho_freertos ****
 make -r -j8 all 
-make: Nothing to be done for `all'.
+Building file: ../source/SOUND_PLAYER.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -std=gnu99 -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -DFRDM_K64F -DUSE_RTOS=1 -DFSL_RTOS_FREE_RTOS -DCR_INTEGER_PRINTF -DFREEDOM -DPRINTF_ADVANCED_ENABLE=1 -DSDK_DEBUGCONSOLE=0 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -DSDK_OS_FREE_RTOS -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\board" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\source" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\drivers" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\CMSIS" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\utilities" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\startup" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\contrib\apps\udpecho" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\port\arch" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\port" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include\lwip\priv" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include\lwip\prot" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include\lwip" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include\netif\ppp\polarssl" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include\netif\ppp" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include\netif" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include\posix\sys" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include\posix" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\freertos\include" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\freertos\portable" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\src\include" -I"C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\lwip\contrib\apps" -O0 -fno-common -g -Wall -c  -ffunction-sections  -fdata-sections  -ffreestanding  -fno-builtin -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"source/SOUND_PLAYER.d" -MT"source/SOUND_PLAYER.o" -MT"source/SOUND_PLAYER.d" -o "source/SOUND_PLAYER.o" "../source/SOUND_PLAYER.c"
+../source/SOUND_PLAYER.c: In function 'audio_player':
+../source/SOUND_PLAYER.c:112:47: error: 'i_pong' undeclared (first use in this function)
+   if      ( 1 == flag_ping && PINGPONGSIZE == i_pong )
+                                               ^~~~~~
+../source/SOUND_PLAYER.c:112:47: note: each undeclared identifier is reported only once for each function it appears in
+../source/SOUND_PLAYER.c:116:31: error: 'N_SIZE' undeclared (first use in this function)
+   else if ( 1 == flag_pong && N_SIZE == i_ping )
+                               ^~~~~~
+../source/SOUND_PLAYER.c:116:41: error: 'i_ping' undeclared (first use in this function)
+   else if ( 1 == flag_pong && N_SIZE == i_ping )
+                                         ^~~~~~
+make: *** [source/SOUND_PLAYER.o] Error 1
 
-21:45:32 Build Finished (took 312ms)
+17:19:16 Build Finished (took 670ms)
 

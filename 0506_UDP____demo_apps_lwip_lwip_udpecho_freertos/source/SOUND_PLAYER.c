@@ -69,7 +69,9 @@ static void audio_player(void*arg)
 
 	//	vTaskDelete(NULL);
 	uint16_t *GlobalBufferPtr;
-	struct netbuf *buf;
+//	struct netbuf *buf;
+	uint8_t flag_ping = 0;
+	uint8_t flag_pong = 0;
 
 	while (1)
 	{
@@ -81,29 +83,47 @@ static void audio_player(void*arg)
 
 		if (EVENT_BIT & xEventGroupGetBits(event)) {
 			//netbuf_copy(buf, GlobalBuffer, N_SIZE);
-			for(uint8_t i=0; i<N_SIZE ;i++)
+			for(uint8_t i_ping = 0; i_ping < PINGPONGSIZE; i_ping ++ )
 			{
-				pingBuffer[i]=GlobalBufferPtr[i];
+				flag_ping = 1;
+				pingBuffer[i_ping]=GlobalBufferPtr[i_ping];
 			}
-
 			xEventGroupClearBits(event, EVENT_BIT);
 		} else {
-			//netbuf_copy(buf, pongBuffer, N_SIZE);
-			for(uint8_t i=0; i<N_SIZE ;i++)
+			//netbuf_copy(buf, pongBuffer, PINGPONGSIZE);
+			for(uint8_t i_pong = 0; i_pong < PINGPONGSIZE; i_pong ++ )
 			{
-				pongBuffer[i]=GlobalBufferPtr[i];
+				flag_pong = 1;
+				pongBuffer[i_pong]=GlobalBufferPtr[i_pong];
 			}
 			xEventGroupSetBits(event, EVENT_BIT);
 		}
-
-
-		static uint8_t i_SinValue = 0;
-		if (i_SinValue == 100)
+//		for(uint8_t i=0; i<N_SIZE ;i++)
+//		{
+//			DAC_SetBufferValue(DAC0, 0U, pingBuffer[i]);
+//		}
+//
+//		for(uint8_t i=0; i<N_SIZE ;i++)
+//		{
+//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i]);
+//		}
+		static uint8_t i_player_ping = 0;
+		static uint8_t i_player_pong = 0;
+		if      ( 1 == flag_ping && PINGPONGSIZE == i_pong )
 		{
-			i_SinValue = 0;
+			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_pong]);
 		}
-		DAC_SetBufferValue(DAC0, 0U, valores[i_SinValue]);
-		i_SinValue ++;
+		else if ( 1 == flag_pong && N_SIZE == i_ping )
+		{
+			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_ping]);
+		}
+//		static uint8_t i_SinValue = 0;
+//		if (i_SinValue == 100)
+//		{
+//			i_SinValue = 0;
+//		}
+//		DAC_SetBufferValue(DAC0, 0U, valores[i_SinValue]);
+//		i_SinValue ++;
 
 	}
 
