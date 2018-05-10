@@ -9,6 +9,7 @@
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
 			<item value="netbuf"/>
+			<item value="numbuf"/>
 			<item value="AUDIO_P"/>
 			<item value="audio_p"/>
 			<item value="HEAP"/>

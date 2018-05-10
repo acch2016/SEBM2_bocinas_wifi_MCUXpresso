@@ -107,16 +107,18 @@ static void audio_player(void*arg)
 //		{
 //			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i]);
 //		}
-		static uint8_t i_player_ping = 0;
-		static uint8_t i_player_pong = 0;
-		if      ( 1 == flag_ping && PINGPONGSIZE == i_pong )
-		{
-			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_pong]);
-		}
-		else if ( 1 == flag_pong && N_SIZE == i_ping )
-		{
-			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_ping]);
-		}
+
+//		static uint8_t i_player_ping = 0;
+//		static uint8_t i_player_pong = 0;
+//		if      ( 1 == flag_ping && PINGPONGSIZE == i_pong )
+//		{
+//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_pong]);
+//		}
+//		else if ( 1 == flag_pong && N_SIZE == i_ping )
+//		{
+//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_ping]);
+//		}
+
 //		static uint8_t i_SinValue = 0;
 //		if (i_SinValue == 100)
 //		{
@@ -135,7 +137,7 @@ static void audio_player(void*arg)
 void audio_player_init(void)
 {
 	pitToogleSemaphore = xSemaphoreCreateBinary();
-	xTaskCreate(audio_player, "audio_player", configMINIMAL_STACK_SIZE, NULL, configMAX_PRIORITIES-1, NULL);
+	xTaskCreate(audio_player, "audio_player", configMINIMAL_STACK_SIZE+700, NULL, configMAX_PRIORITIES-1, NULL);
 }
 
 
@@ -150,7 +152,7 @@ void PIT0_IRQHandler()
 	//	GPIO_TogglePinsOutput(GPIOB, 1 << 21);
 	//	counter++;
 	//	PRINTF("\r\n%d\r\n", counter);
-	//en lugar de poner logica del DAC aqui, se pondra una bandera o semaforo
+	//en lugar de poner logica del DAC aqui, se puso un evento
 	xHigherPriorityTaskWoken = pdFALSE;
 	xSemaphoreGiveFromISR(pitToogleSemaphore, &xHigherPriorityTaskWoken );
 	portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
