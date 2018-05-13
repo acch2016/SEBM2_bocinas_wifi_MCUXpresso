@@ -70,54 +70,90 @@ static void audio_player(void*arg)
 	//	vTaskDelete(NULL);
 	uint16_t *GlobalBufferPtr;
 //	struct netbuf *buf;
-	uint8_t flag_ping = 0;
-	uint8_t flag_pong = 0;
+	uint8_t flag_ping_receiving = 0;
+	uint8_t flag_pong_receiving = 0;
+
+	uint8_t played_pong = 0;
+
+	//Estado inicial
+	GlobalBufferPtr = AudioPlayer_getBuffer();
+
+	for (uint8_t i = 0; i < PINGPONGSIZE; i++)
+	{
+		flag_pong_receiving = 1;
+		pongBuffer[i] = GlobalBufferPtr[i];
+	}
+	xEventGroupSetBits(event, EVENT_BIT_RECEIVER);
 
 	while (1)
 	{
 		xSemaphoreTake(pitToogleSemaphore,portMAX_DELAY);
-		GPIO_TogglePinsOutput(GPIOB, 1 << 21);
+		//GPIO_TogglePinsOutput(GPIOB, 1 << 21);
 
-		GlobalBufferPtr=AudioPlayer_getBuffer();
+		GlobalBufferPtr = AudioPlayer_getBuffer();
+
+		static uint8_t prueba = 0;
+
+		static uint8_t index_player_ping = 0;
+		static uint8_t index_player_pong = 0;
+
+		prueba = EVENT_BIT_RECEIVER & xEventGroupGetBits(event) & (1 == played_pong);
 
 
-		if (EVENT_BIT & xEventGroupGetBits(event)) {
+		if (  EVENT_BIT_RECEIVER & xEventGroupGetBits(event) & (1 == played_pong) ) {
 			//netbuf_copy(buf, GlobalBuffer, N_SIZE);
-			for(uint8_t i_ping = 0; i_ping < PINGPONGSIZE; i_ping ++ )
+			for(uint8_t i = 0; i < PINGPONGSIZE; i ++ )
 			{
-				flag_ping = 1;
-				pingBuffer[i_ping]=GlobalBufferPtr[i_ping];
+				flag_ping_receiving = 1;
+				pingBuffer[i] = GlobalBufferPtr[i];
 			}
-			xEventGroupClearBits(event, EVENT_BIT);
-		} else {
-			//netbuf_copy(buf, pongBuffer, PINGPONGSIZE);
-			for(uint8_t i_pong = 0; i_pong < PINGPONGSIZE; i_pong ++ )
-			{
-				flag_pong = 1;
-				pongBuffer[i_pong]=GlobalBufferPtr[i_pong];
-			}
-			xEventGroupSetBits(event, EVENT_BIT);
-		}
-//		for(uint8_t i=0; i<N_SIZE ;i++)
-//		{
-//			DAC_SetBufferValue(DAC0, 0U, pingBuffer[i]);
-//		}
-//
-//		for(uint8_t i=0; i<N_SIZE ;i++)
-//		{
-//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i]);
-//		}
+//			flag_ping_receiving = 0;
+			xEventGroupClearBits(event, EVENT_BIT_RECEIVER);
 
-//		static uint8_t i_player_ping = 0;
-//		static uint8_t i_player_pong = 0;
-//		if      ( 1 == flag_ping && PINGPONGSIZE == i_pong )
-//		{
-//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_pong]);
-//		}
-//		else if ( 1 == flag_pong && N_SIZE == i_ping )
-//		{
-//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_ping]);
-//		}
+		} else if (100 == index_player_ping){
+			//netbuf_copy(buf, pongBuffer, PINGPONGSIZE);
+			for(uint8_t i = 0; i < PINGPONGSIZE; i ++ )
+			{
+				flag_pong_receiving = 1;
+				pongBuffer[i] = GlobalBufferPtr[i];
+			}
+//			flag_pong_receiving = 0;
+			xEventGroupSetBits(event, EVENT_BIT_RECEIVER);
+		}
+
+
+
+
+
+		if      ( 0 == flag_ping_receiving && 1 == flag_pong_receiving )
+		{
+			if (index_player_ping == 100)
+			{
+				played_pong = 1;
+				index_player_ping = 0;
+			}
+			DAC_SetBufferValue(DAC0, 0U, pongBuffer[index_player_pong]);
+			index_player_ping++;
+		}
+		else if ( 0 == flag_pong_receiving && 1 == flag_ping_receiving )
+		{
+			if (index_player_pong == 100)
+			{
+				index_player_pong = 0;
+			}
+			DAC_SetBufferValue(DAC0, 0U, pingBuffer[index_player_ping]);
+			index_player_pong++;
+		}
+
+		//		for(uint8_t i=0; i<N_SIZE ;i++)
+		//		{
+		//			DAC_SetBufferValue(DAC0, 0U, pingBuffer[i]);
+		//		}
+		//
+		//		for(uint8_t i=0; i<N_SIZE ;i++)
+		//		{
+		//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i]);
+		//		}
 
 //		static uint8_t i_SinValue = 0;
 //		if (i_SinValue == 100)
@@ -137,7 +173,7 @@ static void audio_player(void*arg)
 void audio_player_init(void)
 {
 	pitToogleSemaphore = xSemaphoreCreateBinary();
-	xTaskCreate(audio_player, "audio_player", configMINIMAL_STACK_SIZE+700, NULL, configMAX_PRIORITIES-1, NULL);
+	xTaskCreate(audio_player, "audio_player", configMINIMAL_STACK_SIZE+800, NULL, configMAX_PRIORITIES-1, NULL);
 }
 
 

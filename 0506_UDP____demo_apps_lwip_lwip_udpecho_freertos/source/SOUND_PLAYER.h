@@ -35,8 +35,8 @@
 #define DEMO_DAC_BASEADDR DAC0
 
 #define PINGPONGSIZE 100
-#define EVENT_BIT (1<<0)
-//#define EVENT_BIT_ (1<<0)
+#define EVENT_BIT_RECEIVER (1<<0)
+#define EVENT_BIT_PLAYER (1<<1)
 
 /*******************************************************************************
 * Variables

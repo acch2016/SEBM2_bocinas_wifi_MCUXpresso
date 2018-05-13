@@ -1,6 +1,21 @@
-16:27:12 **** Incremental Build of configuration Debug for project 0506_UDP____demo_apps_lwip_lwip_udpecho_freertos ****
+20:55:02 **** Incremental Build of configuration Debug for project 0506_UDP____demo_apps_lwip_lwip_udpecho_freertos ****
 make -r -j8 all 
-make: Nothing to be done for `all'.
+Building target: 0506_UDP____demo_apps_lwip_lwip_udpecho_freertos.axf
+Invoking: MCU Linker
+arm-none-eabi-gcc -nostdlib -Xlinker -print-memory-usage -Xlinker --gc-sections -Xlinker -Map="0506_UDP____demo_apps_lwip_lwip_udpecho_freertos.map" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T 0506_UDP_demo_apps_lwip_lwip_udpecho_freertos_Debug.ld -o "0506_UDP____demo_apps_lwip_lwip_udpecho_freertos.axf"  ./utilities/fsl_assert.o ./utilities/fsl_debug_console.o ./utilities/fsl_io.o ./utilities/fsl_log.o ./utilities/fsl_str.o  ./startup/startup_mk64f12.o  ./source/SOUND_PLAYER.o ./source/lwip_udpecho_freertos.o ./source/semihost_hardfault.o  ./lwip/src/netif/ppp/auth.o ./lwip/src/netif/ppp/ccp.o ./lwip/src/netif/ppp/chap-md5.o ./lwip/src/netif/ppp/chap-new.o ./lwip/src/netif/ppp/chap_ms.o ./lwip/src/netif/ppp/demand.o ./lwip/src/netif/ppp/eap.o ./lwip/src/netif/ppp/eui64.o ./lwip/src/netif/ppp/fsm.o ./lwip/src/netif/ppp/ipcp.o ./lwip/src/netif/ppp/ipv6cp.o ./lwip/src/netif/ppp/lcp.o ./lwip/src/netif/ppp/lwip_ecp.o ./lwip/src/netif/ppp/magic.o ./lwip/src/netif/ppp/mppe.o ./lwip/src/netif/ppp/multilink.o ./lwip/src/netif/ppp/ppp.o ./lwip/src/netif/ppp/pppapi.o ./lwip/src/netif/ppp/pppcrypt.o ./lwip/src/netif/ppp/pppoe.o ./lwip/src/netif/ppp/pppol2tp.o ./lwip/src/netif/ppp/pppos.o ./lwip/src/netif/ppp/upap.o ./lwip/src/netif/ppp/utils.o ./lwip/src/netif/ppp/vj.o  ./lwip/src/netif/ethernet.o ./lwip/src/netif/lowpan6.o ./lwip/src/netif/slipif.o  ./lwip/src/core/ipv6/dhcp6.o ./lwip/src/core/ipv6/ethip6.o ./lwip/src/core/ipv6/icmp6.o ./lwip/src/core/ipv6/inet6.o ./lwip/src/core/ipv6/ip6.o ./lwip/src/core/ipv6/ip6_addr.o ./lwip/src/core/ipv6/ip6_frag.o ./lwip/src/core/ipv6/mld6.o ./lwip/src/core/ipv6/nd6.o  ./lwip/src/core/ipv4/autoip.o ./lwip/src/core/ipv4/dhcp.o ./lwip/src/core/ipv4/etharp.o ./lwip/src/core/ipv4/icmp.o ./lwip/src/core/ipv4/igmp.o ./lwip/src/core/ipv4/ip4.o ./lwip/src/core/ipv4/ip4_addr.o ./lwip/src/core/ipv4/ip4_frag.o  ./lwip/src/core/def.o ./lwip/src/core/dns.o ./lwip/src/core/inet_chksum.o ./lwip/src/core/init.o ./lwip/src/core/ip.o ./lwip/src/core/mem.o ./lwip/src/core/memp.o ./lwip/src/core/netif.o ./lwip/src/core/pbuf.o ./lwip/src/core/raw.o ./lwip/src/core/stats.o ./lwip/src/core/sys.o ./lwip/src/core/tcp.o ./lwip/src/core/tcp_in.o ./lwip/src/core/tcp_out.o ./lwip/src/core/timeouts.o ./lwip/src/core/udp.o  ./lwip/src/api/api_lib.o ./lwip/src/api/api_msg.o ./lwip/src/api/err.o ./lwip/src/api/netbuf.o ./lwip/src/api/netdb.o ./lwip/src/api/netifapi.o ./lwip/src/api/sockets.o ./lwip/src/api/tcpip.o  ./lwip/port/ethernetif.o ./lwip/port/sys_arch.o  ./lwip/contrib/apps/udpecho/udpecho.o  ./freertos/source/croutine.o ./freertos/source/event_groups.o ./freertos/source/list.o ./freertos/source/queue.o ./freertos/source/tasks.o ./freertos/source/timers.o  ./freertos/portable/fsl_tickless_systick.o ./freertos/portable/heap_3.o ./freertos/portable/heap_4.o ./freertos/portable/port.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_dac.o ./drivers/fsl_enet.o ./drivers/fsl_flash.o ./drivers/fsl_gpio.o ./drivers/fsl_pit.o ./drivers/fsl_sim.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./board/board.o ./board/clock_config.o ./board/fsl_phy.o ./board/pin_mux.o  ./CMSIS/system_MK64F12.o   
+Memory region         Used Size  Region Size  %age Used
+   PROGRAM_FLASH:       97404 B         1 MB      9.29%
+      SRAM_UPPER:       82696 B       192 KB     42.06%
+      SRAM_LOWER:          0 GB        64 KB      0.00%
+./freertos/portable/heap_4.o: In function `pvPortMalloc':
+C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\Debug/../freertos/portable/heap_4.c:156: multiple definition of `pvPortMalloc'
+./freertos/portable/heap_3.o:C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\Debug/../freertos/portable/heap_3.c:101: first defined here
+./freertos/portable/heap_4.o: In function `vPortFree':
+heap_4.c:(.text.vPortFree+0x0): multiple definition of `vPortFree'
+./freertos/portable/heap_3.o:C:\p2\SEBM2_bocinas_wifi_MCUXpresso\0506_UDP____demo_apps_lwip_lwip_udpecho_freertos\Debug/../freertos/portable/heap_3.c:101: first defined here
+collect2.exe: error: ld returned 1 exit status
+        FLEX_RAM:          0 GB         4 KB      0.00%
+make: *** [0506_UDP____demo_apps_lwip_lwip_udpecho_freertos.axf] Error 1
 
-16:27:12 Build Finished (took 359ms)
+20:55:03 Build Finished (took 1s.190ms)
 

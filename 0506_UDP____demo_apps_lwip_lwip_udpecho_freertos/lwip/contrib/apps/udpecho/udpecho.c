@@ -36,17 +36,17 @@ static void server_thread(void *arg)
 	conn = netconn_new(NETCONN_UDP);
 	netconn_bind(conn, IP_ADDR_ANY, 54321);//ip4
 
-	uint8_t dacBuffer[60];
+	// uint8_t dacBuffer[60];
 
 
 	while (1)
 	{
 		netconn_recv(conn, &buf);
-		netbuf_data(buf, (void**)&msg, &len);//CREO NO ES NECESARIA ESTA LINEA
+		netbuf_data(buf, (void**)&msg, &len);
 
 		//PRINTF("%i" ,msg[0]);
 
-		netbuf_copy(buf, buffer, sizeof(buffer));//ESTA ES LA BUENA
+		netbuf_copy(buf, buffer, sizeof(buffer));
 		//PRINTF("%i ", buffer[0]);
 		int8_t i;
 
