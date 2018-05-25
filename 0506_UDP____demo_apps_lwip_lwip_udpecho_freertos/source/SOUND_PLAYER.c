@@ -18,7 +18,7 @@ void PITconfig()
 	PIT_Init(PIT, &pit_config);
 	//    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq()*(1.5));
 	/* Set timer period for channel 0 */
-	PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(100U, CLOCK_GetFreq(kCLOCK_BusClk)));//como son 100 valores, le toma mas tiempo y por lo tanto la frecuencia es dos ceros mas abajo
+	PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(90U, CLOCK_GetFreq(kCLOCK_BusClk)));//como son 100 valores, le toma mas tiempo y por lo tanto la frecuencia es dos ceros mas abajo
 	//    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq());
 	PIT_GetStatusFlags(PIT, kPIT_Chnl_0);
 	PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
@@ -56,76 +56,146 @@ void LED_config(void)
 	gpio_pin_config_t led_config_gpio = { kGPIO_DigitalOutput, 1 };
 	GPIO_PinInit(GPIOB, 21, &led_config_gpio);//B
 }
+void PIN_config(void)
+{
+	CLOCK_EnableClock(kCLOCK_PortA); //toogle interrupcion PIT
+	CLOCK_EnableClock(kCLOCK_PortE); //toogle muestra DAC
+	CLOCK_EnableClock(kCLOCK_PortC); //toogle muestra DAC
+
+	port_pin_config_t config_pin =
+	{
+			kPORT_PullUp, kPORT_SlowSlewRate, kPORT_PassiveFilterDisable,
+			kPORT_OpenDrainDisable, kPORT_LowDriveStrength, kPORT_MuxAsGpio,
+			kPORT_UnlockRegister,
+	};
+	PORT_SetPinConfig(PORTA, 1, &config_pin);
+	PORT_SetPinConfig(PORTE, 26, &config_pin);
+	PORT_SetPinConfig(PORTC, 4, &config_pin);
+
+	gpio_pin_config_t pin_config_gpio = { kGPIO_DigitalOutput, 1 };
+	GPIO_PinInit(GPIOA, 1, &pin_config_gpio);
+	GPIO_PinInit(GPIOE, 26, &pin_config_gpio);
+	GPIO_PinInit(GPIOC, 4, &pin_config_gpio);
+
+}
 
 static void audio_player(void*arg)
 {
-	event = xEventGroupCreate();
+	//	event = xEventGroupCreate();
 
 	/* This handler that is originally shared in this module is now pointing to the binarySemaphore created */
 	/* the creation of the semaphore happens only one single time*/
 	PITconfig();
 	DAC_config();
 	LED_config();
+	PIN_config();
 
 	//	vTaskDelete(NULL);
 	uint16_t *GlobalBufferPtr;
-//	struct netbuf *buf;
-	uint8_t flag_ping = 0;
-	uint8_t flag_pong = 0;
+	//	struct netbuf *buf;
+
+	uint8_t played_B = 0;
 
 	while (1)
 	{
 		xSemaphoreTake(pitToogleSemaphore,portMAX_DELAY);
-		GPIO_TogglePinsOutput(GPIOB, 1 << 21);
+		GPIO_TogglePinsOutput(GPIOA, 1 << 1);
 
-		GlobalBufferPtr=AudioPlayer_getBuffer();
+		static uint8_t i_FILL_ping_PLAY_pong = 0;
+		static uint8_t i_FILL_pong_PLAY_ping = 0;
+
+		//		if (EVENT_BIT & xEventGroupGetBits(event)) {
+		//netbuf_copy(buf, GlobalBuffer, N_SIZE);
+		//			for(uint8_t i_ping = 0; i_ping < PINGPONGSIZE; i_ping ++ )
+		//			{
+		//				pingBuffer[i_ping] = GlobalBufferPtr[i_ping];
+		//			}
+		//			flag_ping = 1;
+		//			xEventGroupClearBits(event, EVENT_BIT);
+		//		} else {
+		//netbuf_copy(buf, pongBuffer, PINGPONGSIZE);
+		//			for(uint8_t i_pong = 0; i_pong < PINGPONGSIZE; i_pong ++ )
+		//			{
+		//				pongBuffer[i_pong] = GlobalBufferPtr[i_pong];
+		//			}
+		//			flag_pong = 1;
+		//			xEventGroupSetBits(event, EVENT_BIT);
+		//		}
 
 
-		if (EVENT_BIT & xEventGroupGetBits(event)) {
-			//netbuf_copy(buf, GlobalBuffer, N_SIZE);
-			for(uint8_t i_ping = 0; i_ping < PINGPONGSIZE; i_ping ++ )
+		if( 1 == played_B)
+		{
+			if (PINGPONGSIZE == i_FILL_ping_PLAY_pong)
 			{
-				flag_ping = 1;
-				pingBuffer[i_ping]=GlobalBufferPtr[i_ping];
+				GlobalBufferPtr = AudioPlayer_getBuffer();
+				i_FILL_ping_PLAY_pong = 0;
+				played_B = 0;
+
 			}
-			xEventGroupClearBits(event, EVENT_BIT);
-		} else {
-			//netbuf_copy(buf, pongBuffer, PINGPONGSIZE);
-			for(uint8_t i_pong = 0; i_pong < PINGPONGSIZE; i_pong ++ )
+			pingBuffer[i_FILL_ping_PLAY_pong] = GlobalBufferPtr[i_FILL_ping_PLAY_pong];
+			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_FILL_ping_PLAY_pong]);
+			if (0 == pongBuffer[i_FILL_ping_PLAY_pong])
 			{
-				flag_pong = 1;
-				pongBuffer[i_pong]=GlobalBufferPtr[i_pong];
+//				GPIO_TogglePinsOutput(GPIOE, 1 << 26);//////////////////////////////////////////////////Toogle
+				GPIO_WritePinOutput(GPIOE, 26, 0);    //G ON
+			} else {
+				GPIO_WritePinOutput(GPIOE, 26, 1);    //G OFF
 			}
-			xEventGroupSetBits(event, EVENT_BIT);
+
+			GPIO_TogglePinsOutput(GPIOC, 1 << 4);//////////////////////////////////////////////////Toogle
+			i_FILL_ping_PLAY_pong++;
 		}
-//		for(uint8_t i=0; i<N_SIZE ;i++)
-//		{
-//			DAC_SetBufferValue(DAC0, 0U, pingBuffer[i]);
-//		}
-//
-//		for(uint8_t i=0; i<N_SIZE ;i++)
-//		{
-//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i]);
-//		}
+		else
+		{
+			if (PINGPONGSIZE == i_FILL_pong_PLAY_ping)
+			{
+				GlobalBufferPtr = AudioPlayer_getBuffer();
+				i_FILL_pong_PLAY_ping = 0;
+				played_B = 1;
+			}
+			pongBuffer[i_FILL_pong_PLAY_ping] = GlobalBufferPtr[i_FILL_pong_PLAY_ping];
+			DAC_SetBufferValue(DAC0, 0U, pingBuffer[i_FILL_pong_PLAY_ping]);
+			i_FILL_pong_PLAY_ping++;
+		}
 
-//		static uint8_t i_player_ping = 0;
-//		static uint8_t i_player_pong = 0;
-//		if      ( 1 == flag_ping && PINGPONGSIZE == i_pong )
-//		{
-//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_pong]);
-//		}
-//		else if ( 1 == flag_pong && N_SIZE == i_ping )
-//		{
-//			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_player_ping]);
-//		}
 
-//		static uint8_t i_SinValue = 0;
-//		if (i_SinValue == 100)
-//		{
-//			i_SinValue = 0;
-//		}
-//		DAC_SetBufferValue(DAC0, 0U, valores[i_SinValue]);
-//		i_SinValue ++;
+
+
+		//		static uint8_t i_PLAY_A = 0;
+		//		static uint8_t i_PLAY_B = 0;
+		//
+		//		if (1 == filled_B)
+		//		{
+		//			filled_B == 0;
+		//
+		//
+		//
+		//		}
+		//		else if (1 == filled_A)
+		//		{
+		//			filled_A = 0;
+		//			if (PINGPONGSIZE == i_PLAY_B)
+		//			{
+		//				i_PLAY_B = 0;
+		//			}
+		//
+		//			i_PLAY_B++;
+		//		}
+
+
+		//		static uint8_t i_SinValue = 0;
+		//		if (i_SinValue == 100)
+		//		{
+		//			i_SinValue = 0;
+		//			GPIO_TogglePinsOutput(GPIOE, 1 << 26);
+		//		}
+		//
+		//		DAC_SetBufferValue(DAC0, 0U, valores[i_SinValue]);
+		//		i_SinValue ++;
+
+		////
+
+
 
 	}
 
@@ -149,7 +219,7 @@ void PIT0_IRQHandler()
 	PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
 	//	PIT_StopTimer(PIT, kPIT_Chnl_0);
 	//	PIT_StartTimer(PIT, kPIT_Chnl_0);
-	//	GPIO_TogglePinsOutput(GPIOB, 1 << 21);
+	//		GPIO_TogglePinsOutput(GPIOB, 1 << 21);
 	//	counter++;
 	//	PRINTF("\r\n%d\r\n", counter);
 	//en lugar de poner logica del DAC aqui, se puso un evento

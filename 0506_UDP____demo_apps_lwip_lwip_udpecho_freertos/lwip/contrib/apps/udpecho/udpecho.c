@@ -36,7 +36,6 @@ static void server_thread(void *arg)
 	conn = netconn_new(NETCONN_UDP);
 	netconn_bind(conn, IP_ADDR_ANY, 54321);//ip4
 
-	uint8_t dacBuffer[60];
 
 
 	while (1)

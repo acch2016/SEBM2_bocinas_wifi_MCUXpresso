@@ -34,7 +34,7 @@
  ******************************************************************************/
 #define DEMO_DAC_BASEADDR DAC0
 
-#define PINGPONGSIZE 100
+#define PINGPONGSIZE 200
 #define EVENT_BIT (1<<0)
 //#define EVENT_BIT_ (1<<0)
 
@@ -59,6 +59,7 @@ uint8_t valores[] = { 127, 135, 143, 151, 159, 167, 174, 182, 189, 196, 202,
 void PIT_config(void);
 void DAC_config(void);
 void LED_config(void);
+void PIN_config(void);
 static void audio_player(void *arg);
 
 
