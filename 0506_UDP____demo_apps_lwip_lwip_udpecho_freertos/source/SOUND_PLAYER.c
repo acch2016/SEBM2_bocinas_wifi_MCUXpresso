@@ -18,7 +18,7 @@ void PITconfig()
 	PIT_Init(PIT, &pit_config);
 	//    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq()*(1.5));
 	/* Set timer period for channel 0 */
-	PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(90U, CLOCK_GetFreq(kCLOCK_BusClk)));//como son 100 valores, le toma mas tiempo y por lo tanto la frecuencia es dos ceros mas abajo
+	PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(91U, CLOCK_GetFreq(kCLOCK_BusClk)));//como son 100 valores, le toma mas tiempo y por lo tanto la frecuencia es dos ceros mas abajo
 	//    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq());
 	PIT_GetStatusFlags(PIT, kPIT_Chnl_0);
 	PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
@@ -87,10 +87,9 @@ static void audio_player(void*arg)
 	/* the creation of the semaphore happens only one single time*/
 	PITconfig();
 	DAC_config();
-	LED_config();
-	PIN_config();
+//	LED_config();
+//	PIN_config();
 
-	//	vTaskDelete(NULL);
 	uint16_t *GlobalBufferPtr;
 	//	struct netbuf *buf;
 
@@ -99,7 +98,7 @@ static void audio_player(void*arg)
 	while (1)
 	{
 		xSemaphoreTake(pitToogleSemaphore,portMAX_DELAY);
-		GPIO_TogglePinsOutput(GPIOA, 1 << 1);
+		//GPIO_TogglePinsOutput(GPIOA, 1 << 1);
 
 		static uint8_t i_FILL_ping_PLAY_pong = 0;
 		static uint8_t i_FILL_pong_PLAY_ping = 0;
@@ -134,15 +133,14 @@ static void audio_player(void*arg)
 			}
 			pingBuffer[i_FILL_ping_PLAY_pong] = GlobalBufferPtr[i_FILL_ping_PLAY_pong];
 			DAC_SetBufferValue(DAC0, 0U, pongBuffer[i_FILL_ping_PLAY_pong]);
-			if (0 == pongBuffer[i_FILL_ping_PLAY_pong])
-			{
-//				GPIO_TogglePinsOutput(GPIOE, 1 << 26);//////////////////////////////////////////////////Toogle
-				GPIO_WritePinOutput(GPIOE, 26, 0);    //G ON
-			} else {
-				GPIO_WritePinOutput(GPIOE, 26, 1);    //G OFF
-			}
-
-			GPIO_TogglePinsOutput(GPIOC, 1 << 4);//////////////////////////////////////////////////Toogle
+//			if (0 == pongBuffer[i_FILL_ping_PLAY_pong])
+//			{
+////				GPIO_TogglePinsOutput(GPIOE, 1 << 26);//////////////////////////////////////////////////Toogle
+//				GPIO_WritePinOutput(GPIOE, 26, 0);    //G ON
+//			} else {
+//				GPIO_WritePinOutput(GPIOE, 26, 1);    //G OFF
+//			}
+//			GPIO_TogglePinsOutput(GPIOC, 1 << 4);//////////////////////////////////////////////////Toogle
 			i_FILL_ping_PLAY_pong++;
 		}
 		else
@@ -158,31 +156,6 @@ static void audio_player(void*arg)
 			i_FILL_pong_PLAY_ping++;
 		}
 
-
-
-
-		//		static uint8_t i_PLAY_A = 0;
-		//		static uint8_t i_PLAY_B = 0;
-		//
-		//		if (1 == filled_B)
-		//		{
-		//			filled_B == 0;
-		//
-		//
-		//
-		//		}
-		//		else if (1 == filled_A)
-		//		{
-		//			filled_A = 0;
-		//			if (PINGPONGSIZE == i_PLAY_B)
-		//			{
-		//				i_PLAY_B = 0;
-		//			}
-		//
-		//			i_PLAY_B++;
-		//		}
-
-
 		//		static uint8_t i_SinValue = 0;
 		//		if (i_SinValue == 100)
 		//		{
@@ -193,13 +166,7 @@ static void audio_player(void*arg)
 		//		DAC_SetBufferValue(DAC0, 0U, valores[i_SinValue]);
 		//		i_SinValue ++;
 
-		////
-
-
-
 	}
-
-
 
 }
 

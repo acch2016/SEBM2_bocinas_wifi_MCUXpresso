@@ -36,6 +36,7 @@
 		<item value="false" key="caseSensitive"/>
 		<item value="227191" key="searchFlags"/>
 		<list key="previousPatterns">
+			<item value="netbuf"/>
 			<item value="ping"/>
 			<item value="AUDIO_PLAYERR"/>
 			<item value="audio_p"/>

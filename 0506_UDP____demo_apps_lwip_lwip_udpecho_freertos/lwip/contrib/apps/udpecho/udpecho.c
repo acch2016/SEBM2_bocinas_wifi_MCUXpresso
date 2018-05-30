@@ -29,7 +29,7 @@ static void server_thread(void *arg)
 	uint16_t *msg;
 
 	uint16_t len;
-	uint16_t buffer[4096];
+	uint16_t buffer[200];
 	//	memset(buffer[0], 0, sizeof(buffer[0]));
 
 	LWIP_UNUSED_ARG(arg);
@@ -45,13 +45,14 @@ static void server_thread(void *arg)
 
 		//PRINTF("%i" ,msg[0]);
 
-		netbuf_copy(buf, buffer, sizeof(buffer));//ESTA ES LA BUENA
+		netbuf_copy(buf, GlobalBuffer, sizeof(GlobalBuffer));//ESTA ES LA BUENA
 		//PRINTF("%i ", buffer[0]);
-		int8_t i;
-
-		for( i=0 ;i<len;i++){
-			GlobalBuffer[i]=buffer[i];
-		}
+//		int8_t i;
+//
+//		for( i=0 ;i<len;i++){
+//			GlobalBuffer[i]=buffer[i];
+//
+//		}
 
 		//		buf_send=buf;
 
