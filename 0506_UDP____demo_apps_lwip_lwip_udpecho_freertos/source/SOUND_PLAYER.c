@@ -18,7 +18,7 @@ void PITconfig()
 	PIT_Init(PIT, &pit_config);
 	//    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq()*(1.5));
 	/* Set timer period for channel 0 */
-	PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(91U, CLOCK_GetFreq(kCLOCK_BusClk)));//como son 100 valores, le toma mas tiempo y por lo tanto la frecuencia es dos ceros mas abajo
+	PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(50U, CLOCK_GetFreq(kCLOCK_BusClk)));//como son 100 valores, le toma mas tiempo y por lo tanto la frecuencia es dos ceros mas abajo
 	//    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq());
 	PIT_GetStatusFlags(PIT, kPIT_Chnl_0);
 	PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
@@ -174,6 +174,8 @@ static void audio_player(void*arg)
 void audio_player_init(void)
 {
 	pitToogleSemaphore = xSemaphoreCreateBinary();
+
+
 	xTaskCreate(audio_player, "audio_player", configMINIMAL_STACK_SIZE+700, NULL, configMAX_PRIORITIES-1, NULL);
 }
 

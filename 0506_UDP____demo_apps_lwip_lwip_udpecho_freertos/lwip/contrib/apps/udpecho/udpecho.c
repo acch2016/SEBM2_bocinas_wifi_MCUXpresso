@@ -29,17 +29,19 @@ static void server_thread(void *arg)
 	uint16_t *msg;
 
 	uint16_t len;
-	uint16_t buffer[200];
+//	uint16_t buffer[200];
 	//	memset(buffer[0], 0, sizeof(buffer[0]));
 
 	LWIP_UNUSED_ARG(arg);
 	conn = netconn_new(NETCONN_UDP);
 	netconn_bind(conn, IP_ADDR_ANY, 54321);//ip4
 
+	synchroTaskSemaphore = xSemaphoreCreateBinary();
 
 
 	while (1)
 	{
+		xSemaphoreTake(synchroTaskSemaphore,portMAX_DELAY);
 		netconn_recv(conn, &buf);
 		netbuf_data(buf, (void**)&msg, &len);//CREO NO ES NECESARIA ESTA LINEA
 
